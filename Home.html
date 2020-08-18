@@ -1,0 +1,55 @@
+<html>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>    
+        var socket = new WebSocket('ws://localhost:8000/ws/cpu/');
+        
+        socket.onmessage = function(e){
+            var recData=JSON.parse(e.data);
+            document.getElementById('cpu').innerHTML = recData.cpu;
+            document.getElementById('ram').innerHTML = recData.ram;
+            
+        };
+        socket.onopen = function(e){
+            alert(e);
+            console.log("open", e);
+        };
+        socket.onerror = function(e){
+            console.log("error", e)
+        };
+        socket.onclose = function(e){
+            console.log("close", e)
+        };
+        </script>
+        
+
+    <body>
+        <h1>CPU UTILISATION:</h1><h1 id ="cpu"></h1>
+        <h1>RAM UTILISATION:<h1><h1 id ="ram"></h1>
+        <div style="max-width:900px; max-height: 400px;">
+            <canvas id="myChart" width="900" height="400"></canvas>
+                    </div>
+    </body>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [1,2],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+</html>
