@@ -11,3 +11,11 @@
 
 3)Get Emailid during the loading of page using javascript and send it to backend for processing .if the RAM utilisation is continously greater than 50% an Email will  be  sent to user with help of django.core.mail.backends.smtp.EmailBackend for notification.
 
+
+STEPS TO RUN THE PROJECT
+1)install requirements.txt----pip install -r requirements.txt
+
+2)migrate the project---------python manage.py migrate,python manage.py makemigrations
+
+3)run the project-------------python manage.py runserver
+      
